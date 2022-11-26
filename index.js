@@ -38,8 +38,8 @@ app.get('/', function (req, res) {
 
     // res.send(req.ipInfo);
     var test = `<p id="ipnya">${ipInfo.ip}</p>
-    <p id="negaranya">${ipInfo.country}</p>
-    <p id="timezonenya>${ipInfo.timezone}</p>`;
+    <p id="negaranya">${negara.country}</p>
+    <p id="timezonenya">${ipInfo.timezone}</p>`;
     res.send(test)
 });
 
