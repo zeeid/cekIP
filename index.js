@@ -3,6 +3,7 @@ const app = express();
 const expressip = require('express-ip');
 const PORT = process.env.PORT || 7000;
 const path = require('path');
+const lookup = require('country-code-lookup')
 
 app.use(expressip().getIpInfoMiddleware);
 
@@ -31,9 +32,13 @@ app.get('/', function (req, res) {
 
   const ipInfo = req.ipInfo;
   console.log(ipInfo);
-  var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
-  res.send(message);
+
+  var negara = lookup.byFips(ipInfo.country);
+  console.log(negara)
+
     // res.send(req.ipInfo);
+    var test = `<p id="ipnya">${ipInfo.ip}</p><p id="negaranya">${ipInfo.country}</p><p id="timezonenya>${ipInfo.timezone}</p>`;
+    res.send(test)
 });
 
 app.listen(app.get('PORT'), function () {
