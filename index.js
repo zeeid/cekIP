@@ -31,13 +31,15 @@ app.get('/', function (req, res) {
   //   }
 
   const ipInfo = req.ipInfo;
-  console.log(ipInfo);
+  // console.log(ipInfo);
 
   var negara = lookup.byFips(ipInfo.country);
-  console.log(negara)
+  console.log(negara.country)
 
     // res.send(req.ipInfo);
-    var test = `<p id="ipnya">${ipInfo.ip}</p><p id="negaranya">${ipInfo.country}</p><p id="timezonenya>${ipInfo.timezone}</p>`;
+    var test = `<p id="ipnya">${ipInfo.ip}</p>
+    <p id="negaranya">${ipInfo.country}</p>
+    <p id="timezonenya>${ipInfo.timezone}</p>`;
     res.send(test)
 });
 
