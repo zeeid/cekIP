@@ -34,9 +34,23 @@ app.get('/', function (req, res) {
   // console.log(ipInfo);
 
   var negara = lookup.byFips(ipInfo.country);
+  
+  if (negara == null) {
+    var negara = lookup.byFips(ipInfo.country);
+    if (negara == null) {
+      var negara = lookup.byIso(ipInfo.country);
+      if (negara == null) {
+        var negara = lookup.byInternet(ipInfo.country);
+        if (negara == null) {
+          var negara = lookup.byInternet("US");
+        }
+      }
+    }
+  }
+  
   console.log(negara.country)
-
-    // res.send(req.ipInfo);
+  
+  // res.send(req.ipInfo);
     var test = `<p id="ipnya">${ipInfo.ip}</p>
     <p id="negaranya">${negara.country}</p>
     <p id="timezonenya">${ipInfo.timezone}</p>`;
